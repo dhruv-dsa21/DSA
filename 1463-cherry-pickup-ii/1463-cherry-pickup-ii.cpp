@@ -2,10 +2,13 @@ class Solution {
 public:
     int dp[71][71][71];
     int solve(int i,int j1,int j2,int m,int n,vector<vector<int>>& grid){
+        //base cases if any robot moves out of column 
         if(j1<0||j1>n-1||j2<0||j2>n-1){
+            //if we take 1e9 then it will cause integer overflow
             return -1e8;
         }
         if(i==m-1){
+            //suppose if both robots move to same grid then we have to give anyone of them
             if(j1==j2){
                 return grid[i][j1];
             }else{
@@ -16,6 +19,7 @@ public:
             return dp[i][j1][j2];
         }
         int maxi = -1e8;
+        //We have total 9 possiblities of both robots movements for every left step other robot will have 3 choices to make 
         for(int k=-1;k<=1;k++){
             for(int j=-1;j<=1;j++){
                 int value = 0;
