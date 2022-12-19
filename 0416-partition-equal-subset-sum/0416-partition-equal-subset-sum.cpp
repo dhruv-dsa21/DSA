@@ -33,7 +33,30 @@ public:
         }
         
         sum = sum/2;
-        vector<vector<int>> dp(n+1,vector<int>(sum+1,-1));
-        return solve(nums,sum,n-1,dp);
+           int dp[n+1][sum+1];
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=sum;j++){
+                if(i==0&&j==0){
+                    dp[i][j] = true;
+                }
+                if(j==0){
+                    dp[i][j] = true;
+                }
+                if(i==0&&j>0){
+                    dp[i][j] = false;
+                }
+            }
+        }
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=sum;j++){
+                bool take,notake;
+                if(nums[i-1]<=j){
+                    take  = dp[i-1][j-nums[i-1]];
+                }
+                notake = dp[i-1][j];
+                dp[i][j] = take||notake;
+            }
+        }
+        return dp[n][sum];
     }
 };
