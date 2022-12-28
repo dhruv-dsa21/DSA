@@ -15,17 +15,14 @@ class Solution
                 {
                     int temp = pq.top();
 
-                    pq.pop();
-                    int rem = temp / 2;
-                    temp = temp - rem;
+                    pq.pop(); 
+                    temp-= temp / 2;
                     pq.push(temp);
                     k--;
                 }
                 else
                 {
-                    int temp = pq.top();
-                    cout << temp << endl;
-                    minSum += temp;
+                    minSum += pq.top();
                     pq.pop();
                 }
             }
