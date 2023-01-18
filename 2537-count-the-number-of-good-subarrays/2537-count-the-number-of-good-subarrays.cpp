@@ -4,6 +4,10 @@ public:
         long long res = 0;
         int n = nums.size();
         int curr = 0;
+        //Concept:-sliding window with variable window size
+        //refer:-https://leetcode.com/problems/count-the-number-of-good-               subarrays/discuss/3052887/C%2B%2B-Solution-Sliding-Window
+        
+        //intution:- if a subarray is good subarray then rest of the    subarrays containing it will also be good sub array
         unordered_map<int,int> mp;
         int curr_idx = 0;
         
