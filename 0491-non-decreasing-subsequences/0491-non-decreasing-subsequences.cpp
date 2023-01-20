@@ -12,9 +12,8 @@ class Solution
                 }
                 return;
             }
-            if (temp.size() > 0)
-            {
-                if (temp[temp.size() - 1] <= nums[idx])
+           
+                if (temp.size()==0||temp[temp.size() - 1] <= nums[idx])
                 {
                     temp.push_back(nums[idx]);
                     solve(nums, temp, ans, idx + 1, n);
@@ -25,13 +24,7 @@ class Solution
                 {
                     solve(nums, temp, ans, idx + 1, n);
                 }
-            }
-            else
-            {   temp.push_back(nums[idx]);
-                solve(nums, temp, ans, idx + 1, n);
-                temp.pop_back();
-                solve(nums, temp, ans, idx + 1, n);
-            }
+           
         }
     vector<vector < int>> findSubsequences(vector<int> &nums)
     {
