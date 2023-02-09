@@ -1,14 +1,18 @@
 class Solution {
 public:
-    int solve(int &n,int steps,int value,int copy){
-        if(steps>n||value>n){
-            return INT_MAX;
+    int solve(int &n,int value,int copy){
+        if(value>n){
+            return 1e8;
         }
         if(value==n){
-            return steps;
+            return 1;
         }
-      
-        return min(solve(n,steps+1,value+copy,copy),solve(n,steps+2,2*value,value));
+        int fstep = 0;
+        int sstep = 0;
+        fstep = 1+solve(n,value+copy,copy);
+        sstep = 2+solve(n,2*value,value);
+       
+        return min(fstep,sstep);
     }
     int minSteps(int n) {
         if(n==1){
@@ -16,7 +20,7 @@ public:
         }
         
         
-        return solve(n,1,1,1);
+        return solve(n,1,1);
         
     }
 };
