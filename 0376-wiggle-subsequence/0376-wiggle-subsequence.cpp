@@ -10,6 +10,8 @@ public:
         if(dp[prev][curr][flag]!=-1){
             return dp[prev][curr][flag];
         }
+        
+        //recursive calls are very similar to LIS quesn.
         nopick = 0 + solve(nums,flag,prev,curr+1,n);
       
          if(flag==1&&nums[curr]>nums[prev]){
@@ -24,6 +26,8 @@ public:
         int flag = 1;
         int n = nums.size();
         memset(dp,-1,sizeof(dp));
+        // we will put 2 recursive calls with different flag values 
+        //because sequence can be with +ve and -ve difference initially
         return 1 + max(solve(nums,1,0,1,n),solve(nums,0,0,1,n));
     }
 };
