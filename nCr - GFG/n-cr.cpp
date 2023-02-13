@@ -14,7 +14,7 @@ public:
             return 0;
         }
         // vector<vector<int>> dp(n+1,vector<int> (n+1,0));
-        vector<int> dp(n+1,0);
+        vector<int> dp(r+1,0);
         dp[0] = 1;
         int mod = 1000000007;
         // for(int i=0;i<=n;i++){
@@ -25,9 +25,9 @@ public:
         //     }
         // }
          for(int i=1;i<=n;i++){
-             vector<int> temp(n+1,0);
+             vector<int> temp(r+1,0);
              temp[0] = 1;
-            for(int j=1;j<=n;j++){
+            for(int j=1;j<=r;j++){
                 
                     temp[j] = (dp[j] + dp[j-1])%mod;
                 
