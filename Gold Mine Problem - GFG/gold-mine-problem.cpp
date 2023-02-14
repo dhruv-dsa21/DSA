@@ -25,11 +25,31 @@ int solve(vector<vector<int>> &mat,int i,int j,int &n,int &m,vector<vector<int>>
     int maxGold(int n, int m, vector<vector<int>> M)
     {
         int ans = 0;
-        vector<vector<int>> dp(n,vector<int>(m,-1));
+        int dp[n][m];
+       
        for(int i=0;i<n;i++){
-           ans = max(ans,solve(M,i,m-1,n,m,dp));
+           dp[i][0] = M[i][0];
        }
-       return ans;
+       for(int j=1;j<m;j++){
+           for(int i=0;i<n;i++){
+               int left = 0,upleft = 0,downleft = 0;
+               if(j<=m){
+                   left = dp[i][j-1];
+               }
+               if(i>0){
+                   upleft = dp[i-1][j-1];
+               }
+               if(i<n-1){
+                   downleft = dp[i+1][j-1];
+               }
+               dp[i][j] = M[i][j] + max(left,max(upleft,downleft));
+           }
+       }
+        int result = INT_MIN;
+        for(int i=0;i<n;i++){
+            result = max(result,dp[i][m-1]);
+        }
+        return result;
     }
 };
 
