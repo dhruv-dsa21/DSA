@@ -28,8 +28,36 @@ class Solution {
     int editDistance(string s, string t) {
        int m = s.size();
        int n = t.size();
-       vector<vector<int>> dp(m+1,vector<int>(n+1,-1));
-       return solve(s,t,m-1,n-1,dp);
+    //   vector<vector<int>> dp(m+1,vector<int>(n+1,-1));
+       int dp[m+1][n+1];
+       
+       for(int i=0;i<=m;i++){
+           for(int j=0;j<=n;j++){
+             
+               if(i==0){
+                   dp[i][j] = j;
+               }
+               if(j==0){
+                   dp[i][j] = i;
+              }
+           }
+       }
+       
+       for(int i=1;i<=m;i++){
+           for(int j=1;j<=n;j++){
+               if(s[i-1]==t[j-1]){
+                   dp[i][j] = dp[i-1][j-1];
+               }else{
+                   int ins = dp[i][j-1];
+                   int del = dp[i-1][j];
+                   int rep = dp[i-1][j-1];
+                   dp[i][j] = 1 + min(ins,min(del,rep));
+               }
+           }
+           
+       }
+       return dp[m][n];
+       
     }
 };
 
