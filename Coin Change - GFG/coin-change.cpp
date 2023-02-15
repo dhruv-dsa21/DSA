@@ -23,8 +23,25 @@ class Solution {
       return dp[n][sum] = pick + nopick;
   }
     long long int count(int coins[], int N, int sum) {
-        vector<vector<long long int>> dp(N+1,vector<long long int>(sum+1,-1));
-        return solve(coins,N,sum,dp);
+       
+       vector<long long int> dp(sum+1,0);
+        dp[0] = 1;
+        for(int i=1;i<=N;i++){
+            vector<long long int> temp(sum+1);
+            temp[0] = 1;
+            for(int j=1;j<=sum;j++){
+                long long int pick = 0,nopick = 0;
+                 if(j>=coins[i-1]){
+                     pick = temp[j-coins[i-1]];
+                 }
+                  nopick = dp[j];
+                
+                 temp[j] = pick + nopick;
+                
+            }
+            dp = temp;
+        }
+        return dp[sum];
     }
 };
 
