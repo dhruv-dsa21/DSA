@@ -27,11 +27,26 @@ class Solution
     int maximizeTheCuts(int n, int x, int y, int z)
     {
         vector<int> dp(n+1,-1);
-        int ans = solve(n,x,y,z,dp);
-        if(ans<0){
+        dp[0] = 0;
+       
+        for(int i=1;i<=n;i++){
+            int f = -1e8,s=-1e8,t=-1e8;
+            if(i-x>=0){
+                f = dp[i-x];
+            }
+            if(i-y>=0){
+                s = dp[i-y];
+            }
+             if(i-z>=0){
+                t = dp[i-z];
+            }
+            dp[i] = 1 + max(f,max(s,t));
+        }
+       
+        if(dp[n]<0){
             return 0;
         }
-        return ans;
+        return dp[n];
     }
 };
 
