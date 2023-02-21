@@ -3,6 +3,16 @@ class Solution
     public:
         int singleNonDuplicate(vector<int> &nums)
         {
+            
+// Bit manipulation approach :- TC:- O(N) SC:- O(1)
+            //We can also use maps, linear search
+    
+        // int Xor = 0;
+        // for(auto num : nums){
+        //     Xor ^= num;
+        // }
+        // return Xor;
+
             int n = nums.size();
             int st = 1;
             int end = n - 2;
