@@ -12,6 +12,11 @@ class Solution{
     public:
     int maxLen(vector<int>&A, int n)
     {   
+        
+        //created a prefix sum array 
+        //and stored the prefix sum for 
+        //every element.
+        
          vector<int> prefix(n+1,0);
          int maxi = 0;
          for(int i=1;i<=n;i++){
@@ -20,6 +25,14 @@ class Solution{
                  maxi = max(maxi,i);
              }
          }
+         //Main Concept:- if at different indices
+         //prefix sum of element remains same 
+         //then that means sum of numbers between
+         //them must have remained 0.
+         
+         //Now this problem is just the variation 
+         //of 1st problem of doc i.e.
+         //max distance between same elements.
          
          unordered_map<int,int> mp;
          
