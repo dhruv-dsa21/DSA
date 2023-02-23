@@ -7,14 +7,15 @@ public:
         if(n==1){
             return false;
         }
-        vector<int> prefix(n+1,0);
         
-        for(int i=1;i<=nums.size();i++){
-            prefix[i] = prefix[i-1] + nums[i-1];
-            if(prefix[i]%k==0&&i>1){
+        long long prefix = 0;
+        
+        for(int i=0;i<nums.size();i++){
+            prefix+=nums[i];
+            if(prefix%k==0&&i>=1){
                 return true;
             }
-            int rem = prefix[i]%k;
+            int rem = prefix%k;
             if(mp.find(rem)!=mp.end()){
                 if(i-mp[rem]>=2){
                     return true;
