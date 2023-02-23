@@ -17,14 +17,9 @@ class Solution{
         //and stored the prefix sum for 
         //every element.
         
-         vector<int> prefix(n+1,0);
+        
          int maxi = 0;
-         for(int i=1;i<=n;i++){
-             prefix[i] = prefix[i-1] + A[i-1];
-             if(prefix[i]==0){
-                 maxi = max(maxi,i);
-             }
-         }
+         int prefix = 0;
          //Main Concept:- if at different indices
          //prefix sum of element remains same 
          //then that means sum of numbers between
@@ -36,11 +31,15 @@ class Solution{
          
          unordered_map<int,int> mp;
          
-         for(int i=1;i<=n;i++){
-             if(mp.find(prefix[i])==mp.end()){
-                 mp[prefix[i]] = i;
+         for(int i=0;i<n;i++){
+             prefix+=A[i];
+             if(prefix==0){
+                 maxi=  max(maxi,i+1);
              }
-             maxi = max(maxi,i - mp[prefix[i]]);
+             if(mp.find(prefix)==mp.end()){
+                 mp[prefix] = i;
+             }
+             maxi = max(maxi,i - mp[prefix]);
          }
          return maxi;
          
