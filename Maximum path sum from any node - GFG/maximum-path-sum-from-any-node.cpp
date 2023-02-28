@@ -89,7 +89,13 @@ class Solution {
             return 0;
         }
         int lh = 0,rh = 0;
+        //We added this condition because 
+        //adding negative sum in num will 
+        //only decrement it further as path
+        //10->-25->4 will decrement overall
+        //sum.
         lh = max(lh,solve(root->left,maxi));
+        
         rh = max(rh,solve(root->right,maxi));
         maxi = max(maxi,root->data + lh+rh);
         return root->data + max(lh,rh);
