@@ -19,7 +19,9 @@ class Solution{
     int count = 0;
     int mx = -1;
     while(j<n){
+        //perform calculation
         mp[s[j]]++;
+        //adjust starting index index after condition is violated
         if(mp.size()>k){
             while(mp.size()>k){
                 mp[s[i]]--;
@@ -28,6 +30,7 @@ class Solution{
                 }
                 i++;
             }
+            //store answer when condition satisfies
         }else if(mp.size()==k){
             mx = max(mx,j-i+1);
         }
