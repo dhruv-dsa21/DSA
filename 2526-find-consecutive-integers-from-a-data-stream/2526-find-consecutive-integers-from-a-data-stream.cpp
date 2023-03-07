@@ -1,37 +1,38 @@
 class DataStream {
 public:
-    deque<int> q;
-    unordered_map<int,int> mp;
-    int val,temp;
+    
+    int val,temp,i=0,j=0,cnt=0;
+    vector<int> v;
     DataStream(int value, int k) {
       val = value;
-       temp = k;
+      temp = k;
     }
     
     bool consec(int num) {
         
-        q.push_back(num);
-        mp[num]++;
-        if(q.size()==temp){
-            if(mp[val]==temp){
-                  mp[q.front()]--;
-            if(mp[q.front()]==0){
-                mp.erase(q.front());
-            }
-             q.pop_front();
-                return true;
-            }
-             mp[q.front()]--;
-            if(mp[q.front()]==0){
-                mp.erase(q.front());
-            }
-             q.pop_front();
-          
-        }
+            bool ans = false;
+          v.push_back(num);
+           if(num==val){
+               cnt++;
+           }
+        if(j-i+1<temp){
+            j++;
+        }else if(j-i+1==temp){
+            if(cnt==temp){
+                cout<<"heihi"<<endl;
+                ans = true;
+               }
+            if(v[i]==val){
+                cnt--;
+               }
+             i++;
+            j++;
+            
+     }
        
        
       
-            return false;
+            return ans;
         
         
         
