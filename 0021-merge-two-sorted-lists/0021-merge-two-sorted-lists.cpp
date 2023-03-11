@@ -30,6 +30,7 @@ public:
             }
             curr = curr->next;   
         }
+        //link curr with rest of the remaining nodes.
        if(p){
            curr->next = p;
        }
