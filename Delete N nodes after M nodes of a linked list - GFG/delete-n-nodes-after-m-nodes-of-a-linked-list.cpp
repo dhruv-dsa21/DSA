@@ -86,12 +86,14 @@ class Solution
                 temp = temp->next;
                 m--;
             }else{
+                //for finding node previous of n nodes whch are going to be deleted.
                 first = temp;
                 while(n>=0&&temp!=NULL){
                     
                     temp = temp->next;
                     n--;
                 }
+                //node after deletion of nodes.
               
                
                 second = temp;
